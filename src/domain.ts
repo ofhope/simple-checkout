@@ -1,18 +1,24 @@
+type SKU = string
+
 interface Item {
-  sku: string
+  sku: SKU
+  name: string
+  price: number
 }
 
+type Cart = Record<SKU, Item[]>
+
 export class Checkout {
-  cart: Item[]
+  cart: Cart
   rules: string
 
   constructor (rules: string) {
     this.rules = rules
-    this.cart = []
+    this.cart = {}
   }
 
   scan (item: Item): void {
-    this.cart.push(item)
+    this.cart[item.sku] = [...this.cart[item.sku], item]
   }
 
   total (): number {
