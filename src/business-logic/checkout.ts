@@ -12,7 +12,8 @@ export class Checkout {
   }
 
   scan (item: Item): void {
-    this.cart[item.sku] = [...this.cart[item.sku], item]
+    const items = this.cart[item.sku] ?? []
+    this.cart[item.sku] = [...items, item]
   }
 
   total (): number {
