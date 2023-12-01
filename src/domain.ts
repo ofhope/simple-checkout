@@ -1,18 +1,17 @@
-// Checkout co = new Checkout(pricingRules);
-//   co.scan(item1);
-//   co.scan(item2);
-//   co.total();
+interface Item {
+  sku: string
+}
 
 export class Checkout {
-  cart: string[]
+  cart: Item[]
   rules: string
 
   constructor (rules: string) {
     this.rules = rules
-    this.cart = ['']
+    this.cart = []
   }
 
-  scan (item: string): void {
+  scan (item: Item): void {
     this.cart.push(item)
   }
 
