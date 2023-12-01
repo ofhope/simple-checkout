@@ -8,11 +8,13 @@ interface Item {
 
 type Cart = Record<SKU, Item[]>
 
+type Rule = (context: Cart) => number
+
 export class Checkout {
   cart: Cart
-  rules: string
+  rules: Rule[]
 
-  constructor (rules: string) {
+  constructor (rules: Rule[]) {
     this.rules = rules
     this.cart = {}
   }
